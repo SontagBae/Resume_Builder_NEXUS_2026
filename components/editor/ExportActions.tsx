@@ -6,7 +6,6 @@ import { cn } from "@/lib/utils";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import { Document, Packer, Paragraph, TextRun, HeadingLevel } from "docx";
-import { saveAs } from "file-saver";
 
 export function ExportActions() {
     const resumeData = useResumeStore((state) => state.resumeData);
@@ -67,7 +66,14 @@ export function ExportActions() {
         });
 
         const blob = await Packer.toBlob(doc);
-        saveAs(blob, `${resumeData.title.replace(/\s+/g, "_")}.docx`);
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `${resumeData.title.replace(/\s+/g, "_")}.docx`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
     };
 
     return (
