@@ -2,6 +2,8 @@
 
 import { CanvasEngine } from "@/components/editor/CanvasEngine";
 import { AIAssistantPanel } from "@/components/editor/AIAssistantPanel";
+import { ImportZone } from "@/components/editor/ImportZone";
+import { ExportActions } from "@/components/editor/ExportActions";
 import { useResumeStore } from "@/lib/store";
 import { Plus, Settings2, Download } from "lucide-react";
 import { nanoid } from "nanoid"; // We need to install nanoid or use uuid
@@ -54,10 +56,11 @@ export default function EditorPage() {
 
                     <div className="h-px bg-zinc-800" />
 
-                    <button className="flex items-center gap-2 w-full px-4 py-3 rounded-lg bg-indigo-500/10 text-indigo-400 hover:bg-indigo-500/20 transition-all text-sm font-medium">
-                        <Download size={16} />
-                        Export PDF
-                    </button>
+                    <ImportZone />
+
+                    <div className="h-px bg-zinc-800" />
+
+                    <ExportActions />
                 </div>
             </aside>
 
