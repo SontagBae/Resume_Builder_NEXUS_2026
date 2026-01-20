@@ -73,7 +73,7 @@ export function CanvasEngine() {
     return (
         <div className="max-w-4xl mx-auto pb-20">
             {/* Paper / Canvas Constraint */}
-            <div className={cn(
+            <div id="resume-canvas" className={cn(
                 "min-h-[800px] bg-zinc-950 shadow-2xl shadow-black/50 overflow-hidden",
                 "border border-white/5 rounded-none md:rounded-sm", // Paper-like look? Or keep it digital?
                 // "md:aspect-[1/1.414]" // A4 Ratio if desired, but sticking to fluid for now
