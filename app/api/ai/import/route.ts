@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import pdf from 'pdf-parse';
 
 export async function POST(req: NextRequest) {
     try {
@@ -13,7 +12,10 @@ export async function POST(req: NextRequest) {
         const arrayBuffer = await file.arrayBuffer();
         const buffer = Buffer.from(arrayBuffer);
 
-        // Extract text from PDF
+        // Extract text from PDF using createRequire for CommonJS in ESM
+        const { createRequire } = require('module');
+        const require_ = createRequire(import.meta.url);
+        const pdf = require_('pdf-parse');
         const data = await pdf(buffer);
         const rawText = data.text;
 
